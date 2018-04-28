@@ -795,6 +795,11 @@ static int clock_krait_8974_driver_probe(struct platform_device *pdev)
 		}
 	}
 
+	while (rows--) {
+		if (freq[rows - 1] == 1958400000)
+			break;
+	}
+
 	krait_update_uv(uv, rows, pvs ? 25000 : 0);
 
 	if (clk_init_vdd_class(dev, &krait0_clk.c, rows, freq, uv, ua))
